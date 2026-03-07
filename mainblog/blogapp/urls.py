@@ -55,7 +55,7 @@ urlpatterns = [
 
     # ================= TEMPLATE ROUTES =================
     path('', home_page, name='home'),
-    path('register/', register_page, name='register'),
+    path('register-page/', register_page, name='register'),
     path('login-view/', login_page, name='login'),
     path('logout/', logout_view, name='logout'),
 
@@ -64,5 +64,5 @@ urlpatterns = [
     path('api/posts/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('api/posts/<int:pk>/like/', ToggleLikeView.as_view(), name='toggle_like'),
     path('api/posts/<int:post_id>/comments/', CommentView.as_view(), name='comments'),
-    path('api/profile/', MyProfileView.as_view(), name='profile'),
+    path('api/profile-page/', MyProfileView.as_view(), name='profile'),
 ]
