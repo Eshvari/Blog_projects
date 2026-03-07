@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+
+        .navbar {
+            background: #667eea;
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 600px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .caption {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div>My Blog App</div>
+    <div>
+        {{ request.user.username }} |
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- CREATE POST -->
+    <div class="card">
+        <h3>Create Post</h3>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <textarea name="caption" placeholder="Write something..." required></textarea>
+            <input type="file" name="image" required>
+            <button type="submit">Post</button>
+        </form>
+    </div>
+
+    <!-- SHOW POSTS -->
+    {% for post in posts %}
+        <div class="card">
+            <strong>{{ post.user.username }}</strong>
+            <div class="caption">{{ post.caption }}</div>
+            <img src="{{ post.image.url }}" alt="Post Image">
+            <small>{{ post.created_at }}</small>
+        </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
