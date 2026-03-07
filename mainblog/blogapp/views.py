@@ -297,6 +297,7 @@ class RegisterView(APIView):
             return Response({"error": "Username and password are required."}, status=400)
 
         if User.objects.filter(username=username).exists():
+            
             return Response({"error": "Username already exists."}, status=400)
 
         user = User.objects.create_user(

@@ -56,7 +56,7 @@ urlpatterns = [
     # ================= TEMPLATE ROUTES =================
     path('', home_page, name='home'),
     path('register/', register_page, name='register'),
-    path('login/', login_page, name='login'),
+    path('login-view/', login_page, name='login'),
     path('logout/', logout_view, name='logout'),
 
     # ================= API ROUTES =================
